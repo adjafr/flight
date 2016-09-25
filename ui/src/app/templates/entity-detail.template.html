@@ -1,0 +1,81 @@
+<div class="container-fluid">
+	<div class="col-md-10 col-md-offset-1">
+
+		<div class="jumbotron">
+			<h1>{{ctrl.entity.name}}</h1>
+		</div>
+
+		<div>
+			<form class="form-horizontal">
+
+				<div class="form-group">
+					<label for="name" class="col-sm-2 control-label">name</label>
+					<div class="col-sm-9" id="name">
+						<!--<a class="green form-control">-->
+						<input type="text" class="green form-control" id="name" ng-model="ctrl.entity.name">
+						<span class="glyphicon glyphicon-{{ctrl.glyph}}" aria-hidden="true"></span>
+							{{ctrl.entity.name}}
+							{{ctrl.entity.tweet}}
+							
+						</a>
+					</div>
+				</div>
+				
+				<md-input-container>
+ <label>Origin</label>
+ <input type="text" ng-model="loginCtrl.user.userName" color = white >
+</md-input-container>
+</div>
+
+
+<div>
+ <md-input-container>
+ <label>Destination</label>
+ <input type="text" ng-model="loginCtrl.user.password" color = white >
+</md-input-container>
+</div>
+
+				<div class="form-group" ng-repeat="(name, info) in ctrl.info">
+					<label for="{{name}}" class="col-sm-2 control-label">{{name}}</label>
+					<div class="col-sm-9" id="{{name}}">
+						<div class="list-group">
+						<!--<input type="text" class="green form-control" id="name">-->
+							<a ui-sref="{{ctrl.getLink(name)}}({ id: {{info.id}} })"
+								class="white list-group-item"><span class="glyphicon glyphicon-{{ctrl.getGlyph(name)}}"
+								aria-hidden="true"></span>
+								{{info.name}}
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group" ng-repeat="(name, set) in ctrl.setInfo">
+					<label for="{{name}}" class="col-sm-2 control-label">{{name}}</label>
+					<div class="col-sm-9" id="{{entity}}">
+						<div class="list-group">
+							<a ng-repeat="entity in set"
+								ui-sref="{{ctrl.getLink(name)}}({ id: {{entity.id}} })" class="white list-group-item">
+								<span class="glyphicon glyphicon-{{ctrl.getGlyph(name)}}" aria-hidden="true"></span>
+								{{entity.name}}
+							</a>
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-8">
+						<button type="submit" class="btn btn-success"
+							ng-click="cityDetailController.updateCityDetails()">Submit!</button><br>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-xs-offset-9 col-xs-3 col-sm-2">
+						<a class="col-xs-12 btn btn-success">Edit</a>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</div>
+</div>

@@ -1,0 +1,18 @@
+<div class="container-fluid">
+	<div class="col-md-10 col-md-offset-1">
+		<div class="jumbotron">
+			<h1>{{ctrl.name}}</h1>
+		</div>
+
+		<div class="list-group">
+			<a ng-repeat="entity in ctrl.entities"
+				ui-sref="{{ctrl.link}}({ id: {{entity.id}} })" class="white list-group-item"> <span
+				class="glyphicon glyphicon-{{ctrl.glyph}}" aria-hidden="true"></span>
+				Origin: {{entity.origin}}  
+				Destination: {{entity.destination}}   
+				Flight Time: {{entity.flightTime}}   
+				Flight Offset: {{entity.offset}}
+			</a>
+		</div>
+	</div>
+</div>

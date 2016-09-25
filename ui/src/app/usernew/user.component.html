@@ -1,0 +1,30 @@
+<h1> hello</h1>
+
+<md-card>
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">Search Flights!</span>
+      <span class="md-subhead">Where would you like to go?</span>
+    </md-card-title-text>
+  </md-card-title>
+
+  <md-card-content>
+    <div layout="row">
+      <md-input-container>
+        <label>Origin</label>
+        <input type="text" ng-model="userCtrl.user.origin">
+      </md-input-container>
+
+      <md-input-container>
+        <label>Destination</label>
+        <input type="text" ng-model="userCtrl.user.destination">
+      </md-input-container>
+
+      <md-button class="md-raised md-primary" aria-label="Profile"  ng-click= userCtrl.searchFlight()>
+        Search!
+             <md-icon><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i></md-icon>
+         </md-button>
+
+    </div>
+  </md-card-content>
+</md-card>

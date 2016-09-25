@@ -4,11 +4,12 @@ The intent of this project is to create an interface for users to book flights.
 
 The idea of a flight is greatly simplified from reality.
 
-In this world, the flights will only go to four cities: Orlando, Miami, Tallahassee, and Jacksonville
+In this world, the flights will only go to four cities: Chattanooga, Knoxville, Nashville, and Memphis
 
 A new set of five flights is generated every "day"
 
 A day is defined in the FlightService
+
 
 A day lasts as long as the @Scheduled annotation indicates, feel free to change this value to assist in your testing
 
@@ -51,7 +52,7 @@ If there is no possible route, the user must be made aware that they cannot trav
 
 Once an itinerary is presented to the user, the user must be given the option to book the itinerary
 
-The user must have a page that displays all of their previously booked itineraries, the total flight time, and the total layover time
+s, the total flight time, and the total layover time
 
 The user must be given the option to view their booked itinerary on a map as provided by the MapController
 

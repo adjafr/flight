@@ -1,5 +1,8 @@
 package com.cooksys.pojo;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 public class Flight {
 	
 	//Name of city where flight originates

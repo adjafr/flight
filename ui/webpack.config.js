@@ -33,7 +33,7 @@ const loaders = [{
   test: /.html$/,
   include: /src/,
   exclude: /node_modules/,
-  loaders: ['ngtemplate', 'html']
+  loaders: ['ngtemplate?requireAngular', 'html']
 }, {
   test: /.html$/,
   include: /static/,

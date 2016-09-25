@@ -1,0 +1,25 @@
+<div ng-cloak layout-gt-sm="row" layout="column">
+
+  <div flex-gt-sm="100" flex>
+
+    <md-toolbar layout="row" class="md-hue-3">
+      <div class="md-toolbar-tools">
+        <span>Flights</span>
+      </div>
+    </md-toolbar>
+    <md-content>
+   <md-list flex>
+     <md-subheader class="md-no-sticky">
+       Flights
+        <!-- <md-button class="md-raised" ng-click = "userHomepageController.showPrompt($event)">Button</md-button> -->
+     </md-subheader>
+
+     <md-list-item class="md-3-line" ng-repeat="flight in homeCtrl.allFlights" ng-click="null">
+  <!-- <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" /> -->
+  <div class="md-list-item-text" layout="column">
+    <h3>{{ flight.origin }}</h3>
+    <h4>{{ flight.destination }}</h4>
+    <p>{{ flight.flighttime }}{{flight.offset}}</p>
+  </div>
+</md-list-item>
+<md-divider ></md-divider>
