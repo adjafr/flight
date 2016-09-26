@@ -49,6 +49,10 @@ public class Flight {
 		this.offset = offset;
 	}
 	
+	public Flight() {
+		
+	}
+	
 	
 
 }

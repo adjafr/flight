@@ -53,9 +53,4 @@ export default class LoginService {
 	};
 
 
-
-
-
-
-
 }

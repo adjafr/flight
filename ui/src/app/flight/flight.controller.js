@@ -2,7 +2,7 @@ import GlobalService from '../global.service'
 
 export default class FlightController {
   /* @ngInject */
-  constructor (GlobalService) {
+  constructor (GlobalService, $interval, $state) {
     this.name = 'Flights'
     this.link = 'flightDetail'
     this.glyph = 'flight'
@@ -17,6 +17,11 @@ export default class FlightController {
 //        Flights: this.entity.flights
 //      }
     }
+      this.intervalPromise = $interval(function() {
+        $state.reload();
+      }, 5000)
+
+
   }
 
   getLink (name) {
@@ -34,4 +39,8 @@ export default class FlightController {
       return 'home'
     }
   }
+
+
+
+
 }

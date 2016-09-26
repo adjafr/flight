@@ -5,9 +5,9 @@ export default function routes ($stateProvider, $urlRouterProvider) {
     {
       url: '/home', //home
 
-      template: '<flight-app></flight-app>'
-
-      template: '<app-home></app-home>'
+      template: '<flight></flight>',
+      // template: '<app-component></app-component>'
+      // template: '<app-home></app-home>'
       onEnter: function (GlobalService) {
     		console.dir(GlobalService.loggedIn)
     		console.dir(GlobalService.validUser)
