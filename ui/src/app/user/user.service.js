@@ -2,8 +2,9 @@ import GlobalService from '../global.service'
 
 export default class UserService {
   /* @ngInject */
-  constructor ($http, server, GlobalService) {
+  constructor ($http, $state, server, GlobalService) {
     this.$http = $http
+    this.$state = $state
     this.server = server
     this.GlobalService = GlobalService
   }

@@ -32,7 +32,7 @@ public class FlightsController {
 	{
 		return flightService.getDailyFlightList();
 	}
-	
+	/*
 	@RequestMapping(value="/allavailable", method=RequestMethod.POST)
 	   public List<List<Flight>> getAllAvailableFlightForOToD(@RequestBody Flight flight) {
 	        List<List<Flight>> flights = new ArrayList<>();
@@ -55,25 +55,134 @@ public class FlightsController {
 	        //getFlightsFromNode(flightNode, flight.getOrigin().toUpperCase(), flight.getDestination().toUpperCase());
 	        return flights;
 	    }
+	    */
 
 	    // flight node with null child nodes
-	    public List<List<Flight>> getFlightsFromNode(FlightNode flightNode, String origin, String destination) {
-	        List<List<Flight>> listOfFlights = new ArrayList<>();
-	        if (flightNode.getDestinationFlightMap().get(destination) != null) {
-	            if (!flightNode.getDestinationFlightMap().get(destination).isEmpty()) {
-	                List<Flight> flights = new ArrayList<>();
-	                flights.addAll(flightNode.getDestinationFlightMap().get(destination));
-	                listOfFlights.add(flights);
+	@RequestMapping(value="/allavailable", method=RequestMethod.POST)
+	   public List<Map<String, List<Flight>>> getAllAvailableFlightForOToD(@RequestBody Flight flight) {
+        List<Map<String, List<Flight>>> flights = new ArrayList<>();
+        List<Flight> availableFlightsList = getFlightList();
+        Map<String, List<Flight>> originCityFlightMap = new HashMap<>();
+        for (Flight flight1 : availableFlightsList) {
+            if (originCityFlightMap.get(flight1.getOrigin().toUpperCase()) == null) {
+                List<Flight> flightList = new ArrayList<>();
+                flightList.add(flight1);
+                originCityFlightMap.put(flight1.getOrigin().toUpperCase(), flightList);
+
+            } else {
+                originCityFlightMap.get(flight1.getOrigin().toUpperCase()).add(flight1);
+            }
+        }
+        FlightNode flightNode = createFlightTree(originCityFlightMap, flight.getOrigin().toUpperCase(), flight.getDestination().toUpperCase(), null);
+
+
+        //flights.addAll(getFlights(flightNode, flight.getOrigin().toUpperCase(), flight.getDestination().toUpperCase()));
+        getFlightsFromNode(flightNode, flight.getOrigin().toUpperCase(), flight.getDestination().toUpperCase(), flights);
+
+        List<Map<String, List<Flight>>> filteredMap = new ArrayList<>();
+        for (Map<String, List<Flight>> map : flights) {
+            if (map.keySet().size() > 1) {
+                filteredMap.add(getPossibleFlights(map, flight.getOrigin().toUpperCase(), flight.getDestination().toUpperCase()));
+            } else {
+                filteredMap.add(map);
+            }
+        }
+        return filteredMap;
+    }
+
+    public Map<String, List<Flight>> getPossibleFlights(Map<String, List<Flight>> flightMap, String origin, String destination) {
+        String firstConnection = getFlightConnectionLocation(flightMap, origin, destination);
+        String nexConnection = getFlightConnectionLocation(flightMap, firstConnection, destination);
+        while (firstConnection != null && !firstConnection.equalsIgnoreCase(getFlightLastConnectionLocation(flightMap, origin, destination))) {
+            List<Flight> flights = new ArrayList<>();
+            List<Flight> connectionFoundFlights = new ArrayList<>();
+            for (Flight nextFlight : flightMap.get(nexConnection)) {
+                for (Flight previousFlight : flightMap.get(firstConnection)) {
+                    if (nextFlight.getDepartureTime() > (previousFlight.getArrivalTime() + 1)) {
+                    	connectionFoundFlights.add(previousFlight);
+                        flights.add(nextFlight);
+                        break;
+                    }
+                }
+            }
+            flightMap.get(firstConnection).clear();
+            flightMap.get(firstConnection).addAll(connectionFoundFlights);
+            flightMap.get(nexConnection).clear();
+            flightMap.get(nexConnection).addAll(flights);
+            firstConnection = getFlightConnectionLocation(flightMap, firstConnection, destination);
+            nexConnection = getFlightConnectionLocation(flightMap, firstConnection, destination);
+        }
+        if (getFlightConnectionLocation(flightMap, origin, destination).equalsIgnoreCase(destination)) {
+            List<Flight> flights = new ArrayList<>();
+            List<Flight> connectionFoundFlights = new ArrayList<>();
+            for (Flight nextFlight : flightMap.get(destination)) {
+                for (Flight previousFlight : flightMap.get(firstConnection)) {
+                    if (nextFlight.getDepartureTime() > (previousFlight.getArrivalTime() + 1)) {
+                    	connectionFoundFlights.add(previousFlight);
+                        flights.add(nextFlight);
+                        break;
+                    }
+                }
+            }
+            flightMap.get(firstConnection).clear();
+            flightMap.get(firstConnection).addAll(connectionFoundFlights);
+            flightMap.get(destination).clear();
+            flightMap.get(destination).addAll(flights);
+        }
+        return flightMap;
+    }
+
+    public String getFlightConnectionLocation(Map<String, List<Flight>> flightMap, String origin, String destination) {
+        String firstConnection = null;
+        for (Map.Entry<String, List<Flight>> entry : flightMap.entrySet()) {
+            for (Flight flight : entry.getValue()) {
+                if (flight.getOrigin().equalsIgnoreCase(origin)) {
+                    firstConnection = entry.getKey();
+                    break;
+                }
+            }
+            if (firstConnection != null) {
+                break;
+            }
+        }
+        return firstConnection;
+    }
+
+    public String getFlightLastConnectionLocation(Map<String, List<Flight>> flightMap, String origin, String destination) {
+        String firstConnection = null;
+        for (Map.Entry<String, List<Flight>> entry : flightMap.entrySet()) {
+            for (Flight flight : entry.getValue()) {
+                if (flight.getDestination().equalsIgnoreCase(destination)) {
+                    firstConnection = flight.getOrigin();
+                    break;
+                }
+            }
+            if (firstConnection != null) {
+                break;
+            }
+        }
+        return firstConnection;
+    }
+
+	    // flight node with null child nodes
+	    public List<Map<String, List<Flight>>> getFlightsFromNode(FlightNode flightNode, String origin, String destination, List<Map<String, List<Flight>>> flightsList) {
+	        Map<String, List<Flight>> flights = new HashMap<>();
+
+	        if (flightNode.getDestinationFlightMap().get(destination) != null && !flightNode.getDestinationFlightMap().get(destination).isEmpty()) {
+	            if (flightNode.getFlightToNodeMap() != null && !flightNode.getFlightToNodeMap().isEmpty()) {
+	                    flights.putAll(flightNode.getFlightToNodeMap());
 	            }
+	            flights.put(destination.toUpperCase(), flightNode.getDestinationFlightMap().get(destination));
+	            flightsList.add(flights);
 	        }
-	        while (!flightNode.getChildNodes().isEmpty()) {
-	            for (FlightNode childNode : flightNode.getChildNodes()) {
-	                getFlightsFromNode(childNode, origin, destination);
-	            }
+
+	        for (FlightNode node : flightNode.getChildNodes()) {
+	            getFlightsFromNode(node, origin, destination, flightsList);
 	        }
-	        return listOfFlights;
+	        return flightsList;
 	    }
 
+	    /*
 	    public List<List<Flight>> getFlights(FlightNode flightNode, String origin, String destination) {
 	        List<List<Flight>> flights = new ArrayList<>();
 	        if (flightNode.getDestinationFlightMap() != null)
@@ -87,6 +196,7 @@ public class FlightsController {
 	            }
 	        return flights;
 	    }
+	    */
 
 	    public FlightNode createFlightTree(Map<String, List<Flight>> flightMapByOrigin, String origin, String destination, FlightNode parentNode) {
 	        FlightNode flightNode = new FlightNode();

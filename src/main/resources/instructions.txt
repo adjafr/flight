@@ -44,7 +44,8 @@ If a user logs in, allow them to search for flights between an origin and destin
 
 The results of this search must be updated in real time
 
-The app must find a flight or series of flights (in the case of layovers) that will get the user from the origin to the destination the fastest
+The app mu
+flight or series of flights (in the case of layovers) that will get the user from the origin to the destination the fastest
 
 A layover of zero is not valid
 

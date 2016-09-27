@@ -16,11 +16,12 @@ public class Itinerary
 	@SequenceGenerator(name="user_id_seq", sequenceName="user_id_seq", allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.IDENTITY, generator="user_id_seq")
 	@Column(updatable=false)
-	
 	private Integer id;
 	
 	@Column//(nullable=false)
-	@ElementCollection(targetClass = SavedFlight.class)
+	
+//	@ElementCollection(targetClass = SavedFlight.class)
+	@OneToMany(mappedBy="itinerary", fetch=FetchType.EAGER)
 	private List<SavedFlight> savedFlight;
 	
 

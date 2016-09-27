@@ -2,6 +2,7 @@ package com.cooksys.service;
 
 import java.util.List;
 
+import com.cooksys.entity.Itinerary;
 import com.cooksys.entity.SavedFlight;
 import com.cooksys.entity.User;
 import com.cooksys.entity.UserResponse;
@@ -37,6 +38,8 @@ public interface UserService
 		UserResponse updateUser(Integer id, User userToUpdate);
 		
 		UserResponse delete(User user);
+
+		Itinerary createItinerary(String username, Itinerary itinerary);
 
 		
 

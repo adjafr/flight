@@ -16,14 +16,14 @@
 						<span class="glyphicon glyphicon-{{ctrl.glyph}}" aria-hidden="true"></span>
 							{{ctrl.entity.name}}
 							{{ctrl.entity.tweet}}
-							
+
 						</a>
 					</div>
 				</div>
-				
+
 				<md-input-container>
  <label>Origin</label>
- <input type="text" ng-model="loginCtrl.user.userName" color = white >
+ <input type="text" ng-model="ctrl.flight.origin" color = white >
 </md-input-container>
 </div>
 
@@ -31,7 +31,7 @@
 <div>
  <md-input-container>
  <label>Destination</label>
- <input type="text" ng-model="loginCtrl.user.password" color = white >
+ <input type="text" ng-model="ctrl.flight.destination" color = white >
 </md-input-container>
 </div>
 
@@ -61,14 +61,20 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-8">
 						<button type="submit" class="btn btn-success"
-							ng-click="cityDetailController.updateCityDetails()">Submit!</button><br>
+							ng-click="ctrl.findFlight()">Submit!</button><br>
 					</div>
 				</div>
 
+				{{flights}}
+					<tr ng-repeat="a in flights">
+					<td>{{a.key}}</td> <td>--></td>
+
+					<td>{{a.value}}</td>
+				</tr>
 				<div class="form-group">
 					<div class="col-xs-offset-9 col-xs-3 col-sm-2">
 						<a class="col-xs-12 btn btn-success">Edit</a>

@@ -17,6 +17,12 @@ public class Flight {
 	//How many hours after the start of the day until the flight takes off
 	private long offset;
 	
+	//Get departure time
+	private long departureTime;
+	
+	//Get arrival time
+	private long arrivalTime;
+	
 	public String getOrigin() {
 		return origin;
 	}
@@ -41,12 +47,45 @@ public class Flight {
 	public void setOffset(long offset) {
 		this.offset = offset;
 	}
-	public Flight(String origin, String destination, long flightTime, long offset) {
+	
+	
+	
+	public long getDepartureTime()
+	{
+		return departureTime;
+	}
+	public void setDepartureTime(long departureTime)
+	{
+		this.departureTime = departureTime;
+	}
+	public long getArrivalTime()
+	{
+		return arrivalTime;
+	}
+	public void setArrivalTime(long arrivalTime)
+	{
+		this.arrivalTime = arrivalTime;
+	}
+	
+	
+//	public long getLayoverTime()
+//	{
+//		return layoverTime;
+//	}
+//	public void setLayoverTime(long arrivalTime)
+//	{
+//		this.layoverTime = layoverTime;
+//	}
+	
+	
+	public Flight(String origin, String destination, long flightTime, long offset, long departureTime, long arrivalTime) {  //, long layoverTime
 		super();
 		this.origin = origin;
 		this.destination = destination;
 		this.flightTime = flightTime;
 		this.offset = offset;
+		this.departureTime = departureTime;
+		this.arrivalTime = arrivalTime;
 	}
 	
 	public Flight() {

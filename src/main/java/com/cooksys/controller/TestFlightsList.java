@@ -8,7 +8,7 @@ public class TestFlightsList {
 
     public static void main(String[] args) {
         FlightsController flightsController = new FlightsController();
-        Flight flight = new Flight("Chattanooga", "Memphis", 2 , 3);
+        Flight flight = new Flight("Chattanooga", "Memphis", 2, 3, "11:00", "13:00");
         for(List<Flight> flightList: flightsController.getAllAvailableFlightForOToD(flight)) {
             for(Flight flight1: flightList) {
                 System.out.print(flight1.getOrigin() + "-->" + flight1.getDestination());

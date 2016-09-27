@@ -1,8 +1,8 @@
 export default function route ($stateProvider) {
   $stateProvider
-  
 
-  
+
+
     .state('users', {
       url: '/users',
       component: 'appUser',
@@ -15,10 +15,13 @@ export default function route ($stateProvider) {
     .state('userDetail', {
       url: '/users/:id',
       component: 'appUserDetail',
-      resolve: {
+      resolve:
+        {
         entity: function (userService, $stateParams) {
           return userService.getUser($stateParams.id)
         }
+
+
       }
     })
 }

@@ -9,9 +9,12 @@
 				ui-sref="{{ctrl.link}}( id {{entity.id}} )" class="white list-group-item"> <span
 				class="glyphicon glyphicon-{{ctrl.glyph}}" aria-hidden="true"></span>
 				Origin: {{entity.origin}}
-				Destination: {{entity.destination}}
-				Flight Time: {{entity.flightTime}}
-				Flight Offset: {{entity.offset}}
+				, Destination: {{entity.destination}}
+				, Departure Time: {{entity.departureTime}}
+				, Arrival Time: {{entity.arrivalTime}}
+				, Flight Time: {{entity.flightTime}} hours
+				<!-- , Flight Offset: {{entity.offset}} -->
+
 			</a>
 		</div>
 	</div>

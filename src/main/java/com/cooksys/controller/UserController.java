@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.cooksys.entity.Itinerary;
 import com.cooksys.entity.SavedFlight;
 import com.cooksys.entity.User;
 import com.cooksys.entity.UserResponse;
@@ -55,6 +56,14 @@ public class UserController
 	 public List<SavedFlight> getCurrentFlights() {
 		 return userService.getAllFlights();
 	 }
+	 
+	 
+	 // ----- Itinerary-------
+	 
+		@RequestMapping(value="/{username}/itinerary", method=RequestMethod.POST)
+		public Itinerary createItinerary(@PathVariable String username, @RequestBody Itinerary itinerary) {
+			return this.userService.createItinerary(username, itinerary);
+		}
 	 
 	 
 	
@@ -111,33 +120,4 @@ public class UserController
 		}
 
 	    
-
-	
-//	@RequestMapping(value = "/{id}/followers", method = RequestMethod.GET)
-//	public List<UserResponse> readFollowers(@PathVariable Integer id) {
-//		return this.userService.readFollowers(id)
-//				;
-//	}
-//	
-//    @RequestMapping(value = "/{id}/followers", method=RequestMethod.PATCH)
-//    public UserResponse addFollowers(@PathVariable Integer id, @RequestBody User userFollower) {
-//        return this.userService.addFollowers(id, userFollower);
-//    }
-//	
-//	@RequestMapping(value = "/{id}/following", method = RequestMethod.GET)
-//	public List<UserResponse> readFollowing(@PathVariable Integer id) {
-//		return this.userService.readFollowing(id);
-//	}
-//	
-//    @RequestMapping(value = "/{id}/followings",method=RequestMethod.POST)
-//    public UserResponse createFollowings(@PathVariable Integer id, @RequestBody User userToFollow) {
-//        return this.userService.createFollowings(id, userToFollow);
-//    }
-	
-//	@GetMapping("/matches/{regex}")
-//	public List<UserProjection> usernameMatches(@PathVariable String regex)
-//	{
-//		return userService.usernameMatches(regex.replace('*', '%'));
-//	}
-
 }

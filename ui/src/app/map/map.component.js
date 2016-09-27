@@ -24,7 +24,7 @@ class MapController {
 
     paths.forEach(args => this.addPath(...args))
 
-    // add path from webservice
+    // add path from webservice  -- this is what I'm doing from here down
     $map.getMarkerByCityName('Chattanooga')
       .then(chattanooga => {
         this.addPath(knoxville, chattanooga, '#FF3388')

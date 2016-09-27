@@ -15,7 +15,7 @@ public class FlightGenerator {
 		
 		ArrayList<Flight> result = new ArrayList<>();
 
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < 10; i++) {
 
 			int originIndex = ThreadLocalRandom.current().nextInt(0, 4);
 
@@ -28,8 +28,15 @@ public class FlightGenerator {
 			String destination = Cities.values()[destinationIndex].getName();
 			int flightTime = ThreadLocalRandom.current().nextInt(1, 4);
 			int offset = ThreadLocalRandom.current().nextInt(0, 10);
+			
+			int departureTime = offset + 8;
+			int arrivalTime = offset + 8 + flightTime;
+			
+//			int layoverTime = 
+			
+			
 
-			Flight f = new Flight(origin, destination, flightTime, offset);
+			Flight f = new Flight(origin, destination, flightTime, offset, departureTime, arrivalTime);
 
 			result.add(f);
 		}
