@@ -1,4 +1,4 @@
-package com.cooksys.pojo;
+package com.cooksys.entity;
 
 public enum Cities {
 	

@@ -1,4 +1,3 @@
-
 <div map-lazy-load="https://maps.google.com/maps/api/js">
 	<ng-map center="{{$mapCtrl.center}}" zoom="{{$mapCtrl.zoom}}">
 	  <marker
@@ -14,5 +13,33 @@
 	    stroke-weight="{{$mapPath.strokeWeight}}"
 	    geodesic="{{$mapPath.geodesic}}">
 	  </shape>
-</ng-map>
+	</ng-map>
+	<div ng-if="$mapCtrl.itinerary !== null" class="md-list-item-text" layout="column">
+		<div class="md-list-item-text" layout="column">
+			LayOver Time: {{$mapCtrl.itinerary.layOver}}
+			Total Trip Time: {{$mapCtrl.itinerary.totalTripTime}}
+			 <div class="table-responsive">
+					 <table class="table table-bordered">
+							 <thead>
+							 <tr class="success">
+									 <th>Origin</th>
+									 <th>Destination</th>
+									 <th>Flight Duration</th>
+									 <th>Departure Time</th>
+									 <th>Arrival Time</th>
+							 </tr>
+							 </thead>
+							 <tbody>
+				 <tr ng-repeat="flight in $mapCtrl.itinerary.savedFlight" class="info" >
+					 <td>{{flight.origin}}</td>
+					 <td>{{flight.destination}}</td>
+					 <td>{{flight.flightTime}}</td>
+					 <td>{{flight.departureTime}}</td>
+					 <td>{{flight.arrivalTime}}</td>
+				 </tr>
+			 </tbody>
+			</table>
+				</div>
+					</div>
+								 </div>
 </div>

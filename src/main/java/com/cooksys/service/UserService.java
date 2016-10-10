@@ -1,56 +1,32 @@
 package com.cooksys.service;
 
+import com.cooksys.entity.Itinerary;
+import com.cooksys.entity.User;
+import com.cooksys.entity.response.UserResponse;
+import com.cooksys.entity.response.ValidateResponse;
+import com.cooksys.entity.Flight;
+
 import java.util.List;
 
-import com.cooksys.entity.Itinerary;
-import com.cooksys.entity.SavedFlight;
-import com.cooksys.entity.User;
-import com.cooksys.entity.UserResponse;
-import com.cooksys.entity.ValidateResponse;
 
+public interface UserService {
 
+    List<ValidateResponse> indexValidate();
 
-public interface UserService
-{
-	
-	// ------ Validate Response ---------
-	
-		List<ValidateResponse> indexValidate();
-		
-		ValidateResponse readValidate(String username);
-		
-		
-		// ----- Get Current Flights --------
-		
-		
-		List<SavedFlight> getAllFlights();
-		
-		
-		
-		// ------ User Response -----------
-		
-		UserResponse create(User user);
+    ValidateResponse readValidate(String username);
 
-		List<UserResponse> index();
-		
-		UserResponse read(String username);
-		
-		UserResponse updateUser(Integer id, User userToUpdate);
-		
-		UserResponse delete(User user);
+    List<Flight> getAllFlights();
 
-		Itinerary createItinerary(String username, Itinerary itinerary);
+    UserResponse create(User user);
 
-		
+    List<UserResponse> index();
 
-//		List<UserResponse> readFollowers(Integer id);
-//		
-//		UserResponse addFollowers(Integer id, User userFollower);
-//
-//		List<UserResponse> readFollowing(Integer id);
-//		
-//		UserResponse createFollowings(Integer id, User userToFollow);
+    UserResponse read(String username);
 
-//		List<UserProjection> usernameMatches(String replace);
+    UserResponse updateUser(Integer id, User userToUpdate);
+
+    UserResponse delete(User user);
+
+    Itinerary createItinerary(String username, Itinerary itinerary);
 
 }

@@ -1,4 +1,4 @@
-package com.cooksys.controller;
+/*package com.cooksys.controller;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ public class TestFlightsList {
 
     public static void main(String[] args) {
         FlightsController flightsController = new FlightsController();
-        Flight flight = new Flight("Chattanooga", "Memphis", 2, 3, "11:00", "13:00");
+        Flight flight = new Flight("Chattanooga", "Memphis", 2, 3, 11, 13);
         for(List<Flight> flightList: flightsController.getAllAvailableFlightForOToD(flight)) {
             for(Flight flight1: flightList) {
                 System.out.print(flight1.getOrigin() + "-->" + flight1.getDestination());
@@ -16,4 +16,4 @@ public class TestFlightsList {
             System.out.println();
         }
     }
-}
+}*/

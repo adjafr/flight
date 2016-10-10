@@ -1,7 +1,9 @@
-package com.cooksys.entity;
+package com.cooksys.entity.response;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.cooksys.entity.User;
 
 
 

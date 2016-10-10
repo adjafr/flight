@@ -1,32 +1,19 @@
 package com.cooksys.service;
 
+import com.cooksys.entity.Flight;
+import com.cooksys.entity.Itinerary;
+
 import java.util.ArrayList;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Service;
+public interface FlightService {
 
-import com.cooksys.component.FlightGenerator;
-import com.cooksys.pojo.Flight;
+    List<Flight> getDailyFlightList();
 
-@Service
-public class FlightService {
+    public List<List<Flight>> getAllAvailableFlightsFromOriginToDestination(Flight flight);
 
-	@Autowired
-	FlightGenerator generator;
+    Itinerary createItinerary(List<Flight> flightSet, Integer userId);
 
-	private ArrayList<Flight> flightList = new ArrayList<>();
-	
-	public ArrayList<Flight> getDailyFlightList()
-	{
-		return flightList;
-	}
-	
-	//The fixedDelay parameter determines how often a new day is generated as expressed in milliseconds, 5000 = 5 seconds
-	@Scheduled(fixedDelay=50000)
-	private void refreshFlights()
-	{
-		flightList = generator.generateNewFlightList();
-	}
-	
+    List<Itinerary> findAllItinerary(Integer userId);
+
 }

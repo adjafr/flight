@@ -2,7 +2,7 @@ import GlobalService from '../global.service'
 
 export default class FlightController {
   /* @ngInject */
-  constructor (GlobalService, $interval, $state) {
+  constructor (GlobalService, $timeout, $state, $scope) {
     this.name = 'Flights'
     this.link = 'flightDetail'
     this.glyph = 'flight'
@@ -17,11 +17,14 @@ export default class FlightController {
 //        Flights: this.entity.flights
 //      }
     }
-      this.intervalPromise = $interval(function() {
+
+      $scope.pageTimer = $timeout(function() {
         $state.reload();
-      }, 5000)
+      }, 6000)
 
-
+      $scope.$on('$destroy', function() {
+        $timeout.cancel($scope.pageTimer)
+      })
   }
 
   getLink (name) {

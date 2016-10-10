@@ -5,17 +5,17 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.stereotype.Component;
 
-import com.cooksys.pojo.Cities;
-import com.cooksys.pojo.Flight;
+import com.cooksys.entity.Cities;
+import com.cooksys.entity.Flight;
 
 @Component
 public class FlightGenerator {
 
 	public ArrayList<Flight> generateNewFlightList() {
-		
+
 		ArrayList<Flight> result = new ArrayList<>();
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 50; i++) {
 
 			int originIndex = ThreadLocalRandom.current().nextInt(0, 4);
 
@@ -27,17 +27,21 @@ public class FlightGenerator {
 			String origin = Cities.values()[originIndex].getName();
 			String destination = Cities.values()[destinationIndex].getName();
 			int flightTime = ThreadLocalRandom.current().nextInt(1, 4);
-			int offset = ThreadLocalRandom.current().nextInt(0, 10);
-			
-			int departureTime = offset + 8;
-			int arrivalTime = offset + 8 + flightTime;
-			
-//			int layoverTime = 
-			
-			
+//			int offset = ThreadLocalRandom.current().nextInt(0, 10);
+			int offsetter = ThreadLocalRandom.current().nextInt(0, 10);
 
-			Flight f = new Flight(origin, destination, flightTime, offset, departureTime, arrivalTime);
+			int departureTime = offsetter + 8;
+			int arrivalTime = offsetter + 8 + flightTime;
 
+			Flight f = new Flight();
+			f.setOrigin(origin);
+			f.setDestination(destination);
+			f.setFlightTime(flightTime);
+//			f.setOffset(offset);
+			f.setOffsetter(offsetter);
+			f.setDepartureTime(departureTime);
+			f.setArrivalTime(arrivalTime);
+			result.add(f);
 			result.add(f);
 		}
 		return result;

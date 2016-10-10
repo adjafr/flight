@@ -9,16 +9,32 @@
 			<form class="form-horizontal">
 
 				<div class="form-group">
-					<label for="name" class="col-sm-2 control-label">Name</label>
+					<label for="name" class="col-sm-2 control-label">name</label>
 					<div class="col-sm-9" id="name">
 						<!--<a class="green form-control">-->
 						<input type="text" class="green form-control" id="name" ng-model="ctrl.entity.name">
 						<span class="glyphicon glyphicon-{{ctrl.glyph}}" aria-hidden="true"></span>
 							{{ctrl.entity.name}}
-							{{ctrl.entity.tweet}}
+							{{ctrl.entity.id}}
+
 						</a>
 					</div>
 				</div>
+
+				<md-input-container>
+
+				<label>Origin</label>
+ 				<input type="text" ng-model="ctrl.flight.origin" color = white >
+				</md-input-container>
+		</div>
+
+
+<div>
+ <md-input-container>
+ <label>Destination</label>
+ <input type="text" ng-model="ctrl.flight.destination" color = white >
+</md-input-container>
+</div>
 
 				<div class="form-group" ng-repeat="(name, info) in ctrl.info">
 					<label for="{{name}}" class="col-sm-2 control-label">{{name}}</label>
@@ -49,17 +65,96 @@
 
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-8">
-						<button type="submit" class="btn btn-success"
-							ng-click="cityDetailController.updateCityDetails()">Save!</button><br>
+						<button type="submit" id="searchFlightsButton" class="btn btn-success"
+							ng-click="ctrl.findFlight()">Submit!</button><br>
 					</div>
 				</div>
 
-				<div class="form-group">
-					<div class="col-xs-offset-9 col-xs-3 col-sm-2">
-						<a class="col-xs-12 btn btn-success">Edit</a>
+
+				<br><br><div class="form-group">
+					<div class="col-sm-offset-2 col-sm-8">
+						<button type="searchItineraries" class="btn btn-success"
+							ng-click="ctrl.getAllItinerariesForUser()">Itineraries!</button><br>
 					</div>
 				</div>
-			</form>
+
+
+				<br><br><a>
+					<div>List of itineraries</div>
+					 <md-list-item class="md-3-line" ng-repeat="b in itineraries" ng-click="ctrl.mapSelectedItinerary(b)">
+						 <div class="md-list-item-text" layout="column">
+							 <div class="md-list-item-text" layout="column">
+								 LayOver Time: {{b.layOver}}
+								 Total Trip Time: {{b.totalTripTime}}
+							 		<div class="table-responsive">
+							 				<table class="table table-bordered">
+							 						<thead>
+							 						<tr class="success">
+							 								<th>Origin</th>
+							 								<th>Destination</th>
+							 								<th>Flight Duration</th>
+							 								<th>Departure Time</th>
+							 								<th>Arrival Time</th>
+							 						</tr>
+							 						</thead>
+							 						<tbody>
+							 			<tr ng-repeat="flight in b.savedFlight" class="info" >
+							 				<td>{{flight.origin}}</td>
+							 				<td>{{flight.destination}}</td>
+							 				<td>{{flight.flightTime}}</td>
+							 				<td>{{flight.departureTime}}</td>
+							 				<td>{{flight.arrivalTime}}</td>
+							 			</tr>
+							 		</tbody>
+							 	 </table>
+							 		 </div>
+							 								</div>						 </div>
+						</md-list-item>
+				 </a>
+<!-- ng-click="ctrl.addPath (flight.origin, flight.destination , '#ff0000')" -->
+
+
+				 <br><br><a>
+					 <div>List of Available Flights</div>
+					 <md-list-item class="md-3-line" ng-repeat="flightList in flights" ng-click="ctrl.saveFlights(flightList)" ng-if="flights.length > 1">
+						 <div class="md-list-item-text" layout="column">
+								 <div class="table-responsive">
+								     <table class="table table-bordered">
+								         <thead>
+								         <tr class="success">
+								             <th>Origin</th>
+								             <th>Destination</th>
+								             <th>Flight Duration</th>
+								             <th>Departure Time</th>
+								             <th>Arrival Time</th>
+								         </tr>
+								         </thead>
+												 <tbody>
+									 <tr ng-repeat="flight in flightList" class="info" >
+										 <td>{{flight.origin}}</td>
+										 <td>{{flight.destination}}</td>
+										 <td>{{flight.flightTime}}</td>
+										 <td>{{flight.departureTime}}</td>
+										 <td>{{flight.arrivalTime}}</td>
+									 </tr>
+								 </tbody>
+								</table>
+									</div>
+								 						 </div>
+						 </md-list-item>
+						 <div ng-if="flights.length == 0">
+							 		No flights available at this time for the origin and destination you selected.
+						  </div>
+				 </a>
+
+				 <!-- <div class="form-group"> -->
+					 <!-- <div class="col-xs-offset-9 col-xs-3 col-sm-2"> -->
+						 <!-- <a class="col-xs-12 btn btn-success">Edit</a> -->
+					 <!-- </div> -->
+				 <!-- </div> -->
+
+				 <flight-map></flight-map>
+
 		</div>
 
 	</div>

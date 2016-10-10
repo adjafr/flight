@@ -5,7 +5,8 @@ import bcrypt from 'bcryptjs'
 
 import flightMap from './map/map.module'
 // import apiUrl from './api.url'
-import flight from './app.component.js' //appComponent //flightApp
+import flight from './app.component.js' //appComponent flightApp
+
 import routes from './app.routes'
 import appUser from './user/user.module'
 // import homeApp from './app/home/home.module'

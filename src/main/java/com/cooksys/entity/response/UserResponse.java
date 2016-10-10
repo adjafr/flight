@@ -1,7 +1,9 @@
-package com.cooksys.entity;
+package com.cooksys.entity.response;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.cooksys.entity.User;
 
 public class UserResponse
 {
@@ -12,16 +14,10 @@ private Integer id;
 	
 	private String username;
 	
-//	private List<UserResponse> following;
-//	
-//	private List<UserResponse> followers;
-	
 	public UserResponse(User user) {
 		this.setId(user.getId());
 		this.setName(user.getName());
 		this.setUsername(user.getUsername());
-//		this.setFollowing(UserResponse.getUsers(user.getFollowing()));
-//		this.setFollowers(UserResponse.getUsers(user.getFollowers()));
 	}
 	
 	public static List<UserResponse> getUsers(List<User> list) {

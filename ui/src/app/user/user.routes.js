@@ -12,6 +12,7 @@ export default function route ($stateProvider) {
         }
       }
     })
+
     .state('userDetail', {
       url: '/users/:id',
       component: 'appUserDetail',
@@ -20,8 +21,9 @@ export default function route ($stateProvider) {
         entity: function (userService, $stateParams) {
           return userService.getUser($stateParams.id)
         }
-
-
       }
     })
+
+
+
 }

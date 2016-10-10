@@ -1,4 +1,4 @@
-import templateUrl from '../templates/entity-detail.template.html'
+import templateUrl from '../templates/user-detail.template.html'
 import UserController from './user.controller'
 
 export default {

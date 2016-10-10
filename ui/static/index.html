@@ -25,6 +25,7 @@
         <div class="collapse navbar-collapse" id="navbar">
           <ul class="nav navbar-nav">
             <li><a class="myColor" ui-sref="users" ui-sref-active="active">Users</a></li>
+            <li><a class="myColor" a href="#/users/{{id}}" ui-sref-active="active">User Page</a></li>
             <li><a class="myColor" ui-sref="flights" ui-sref-active="active">Flights</a></li>
             <li><a class="myColor" ui-sref="logins" ui-sref-active="active">Login</a></li>
             <li><a ng-show = "global.service.loggedIn === true"  class="myColor" ui-sref="logins" ui-sref-active="active">Logout</a></li>

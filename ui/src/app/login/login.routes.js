@@ -16,6 +16,7 @@ export default function route ($stateProvider) {
     .state('loginDetail/:id', {
       url: '/users/:id',
       component: 'appLoginDetail'
+      })
       // resolve: {allUsers: function(loginService){
       //   return loginService.AllUsers()
       // }
@@ -26,5 +27,5 @@ export default function route ($stateProvider) {
 //          return loginService.getLogin($stateParams.id)
 //        }
 //      }
-    })
+
 }

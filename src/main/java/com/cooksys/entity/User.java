@@ -28,7 +28,7 @@ public class User
 	@Column(nullable=false)
 	private String password;
 	
-	
+	@JsonIgnore
 	@OneToMany(fetch=FetchType.EAGER)  //, cascade = CascadeType.REMOVE
 //	@JoinColumn
 	private List<Itinerary> itinerary;
