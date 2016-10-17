@@ -41,12 +41,11 @@ public class FlightServiceImpl implements FlightService{
 	    private List<Flight> flightList = new ArrayList<>();
 
 	    public List<Flight> getDailyFlightList() {
-	        //refreshFlights();
 	        return flightList;
 	    }
 
-	    //The fixedDelay parameter determines how often a new day is generated as expressed in milliseconds, 5000 = 5 seconds
-	    @Scheduled(fixedDelay = 6000)
+	    //The fixedDelay parameter determines how often a new day is generated as expressed in milliseconds, 6000 = 6 seconds
+	    @Scheduled(fixedDelay = 60000)
 	    private void refreshFlights() {
 	        flightList = generator.generateNewFlightList();
 	    }
@@ -65,8 +64,6 @@ public class FlightServiceImpl implements FlightService{
 	    		}
 	    	}
 	    
-	    	// put this in a seperate method for the flights and then each time you search call this method and it will caclulate
-	    	//both for you
 	        Itinerary itinerary = new Itinerary();
 	        itinerary.setLayOver(layOver);
 	        itinerary.setTotalTripTime(layOver + flightDuration); 
@@ -93,8 +90,8 @@ public class FlightServiceImpl implements FlightService{
 	        return itineraryRepository.findByUser(user);
 	    }
 
-	    // create a function that takes in an itinerary and 
-	    // Search Available Flights by Origin & Destination
+	     
+	    // Search Available Flights by Origin & Destination / Recursive Function
 	    @Override
 	    public List<Itinerary> getAllAvailableFlightsFromOriginToDestination(Flight flight) {
 
@@ -146,7 +143,7 @@ public class FlightServiceImpl implements FlightService{
 		    	}
 	        	Itinerary itinerary = new Itinerary();
 	        	itinerary.setSavedFlight(flightList);
-	        	itinerary.setTotalTripTime(flightDuration);
+	        	itinerary.setTotalTripTime(flightDuration + layOver);
 	        	itinerary.setLayOver(layOver);
 	        	itineraries.add(itinerary);
 	        }

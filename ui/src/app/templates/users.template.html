@@ -6,11 +6,18 @@
 
 		<div class="list-group">
 			<a ng-repeat="entity in ctrl.entities"
-				ui-sref="{{ctrl.link}}({ id: {{entity.id}} })" class="white list-group-item"> <span
-				class="glyphicon glyphicon-{{ctrl.glyph}}" aria-hidden="true"></span>
+
+				class="white list-group-item">
+				<span
+				class="glyphicon glyphicon-{{ctrl.glyph}}" aria-hidden="true">
+				</span>
 				{{entity.name}}
 				{{entity.tweet}}
 			</a>
 		</div>
 	</div>
 </div>
+
+
+<!-- code below goes between ng-repeat & class of list-group -->
+<!-- ui-sref="{{ctrl.link}}({ id: {{entity.id}} })" -->

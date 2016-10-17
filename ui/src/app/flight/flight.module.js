@@ -9,7 +9,7 @@ import routes from './flight.routes'
 export default angular.module('app.flight', [])
   .service('flightService', FlightService)
   .service('GlobalService', GlobalService)
-  .component('appFlight', flight)  //appFlight
+  .component('appFlight', flight)  
   .component('appFlightDetail', flightDetail)
   .config(routes)
   .name

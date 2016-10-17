@@ -43,7 +43,7 @@ Execute the contents of location.sql to populate the locations table
 
 * The flightpaths must be displayed in order from shortest flight time to longest flight time
 
----- The results of this search must be updated in real time
+* The results of this search must be updated in real time
 
 * The app must find a flight or series of flights (in the case of layovers) that will get the user from the origin to the destination the fastest
 
@@ -59,4 +59,4 @@ Execute the contents of location.sql to populate the locations table
 
 * In the scenario of a multi-flight itinerary, lines must be displayed with a different color for each branch of the journey
 
-* Information must be provided on the map template page that shows the user the order the line segments occur in, the flight time for that segment, and the layover time in each particular city, & remove marker from origin
+* Information must be provided on the map template page that shows the user the order the line segments occur in, the flight time for that segment, and the layover time in each particular city.

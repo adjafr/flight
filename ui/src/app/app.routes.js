@@ -1,13 +1,12 @@
 export default function routes ($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/home')  //home
+  $urlRouterProvider.otherwise('/home')  
   $stateProvider
-    .state('home', //home
+    .state('home',
     {
-      url: '/home', //home
+      url: '/home',
 
       template: '<flight></flight>',
-      // template: '<app-component></app-component>'
-      // template: '<app-home></app-home>'
+
       onEnter: function (GlobalService) {
     		console.dir(GlobalService.loggedIn)
     		console.dir(GlobalService.validUser)

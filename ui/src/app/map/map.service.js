@@ -2,7 +2,6 @@
 class MapService {
   constructor ($http, $state) {
     this.$http = $http
-//    this.apiUrl = apiUrl
     this.server = 'http://localhost:8000'
     this.$state = $state
 

@@ -14,8 +14,6 @@ class MapController {
     let i = 0
     const colors = ['#CC0099', '#AA1100', '#FF3388', '#660066', '#CC66ff']
     this.itinerary = $map.itinerary
-    // add markers from an angular constant
-    // add path from webservice
     $map.details.forEach(flight => {
       let origin = $map.nameCheck(flight.origin)
       let destination = $map.nameCheck(flight.destination)

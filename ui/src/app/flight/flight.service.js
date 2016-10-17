@@ -19,10 +19,5 @@ export default class FlightService {
       .get(this.server + 'flights/' + id)
       .then((flight) => flight.data)
   }
-//
-//  editFlight (id, flight) {
-//    return () => {
-//      this.$http.patch(this.server + 'flights/' + id, flight)
-//    }
-//  }
+
 }

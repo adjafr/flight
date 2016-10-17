@@ -29,7 +29,7 @@ export default class LoginService {
 
 		console.dir('login service happened')
 		let temp = user.password
-		// csonsole.log(temp)
+		// console.log(temp)
 		console.log("_____________")
 		this.$http.get(this.url + user.username + '/validate' ).then((user) => {
 		this.thisUser = user.data

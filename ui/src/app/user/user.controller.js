@@ -30,40 +30,24 @@ export default class UserController {
 
     this.findFlight = function () {
       UserDetailService.searchFlights(this.flight).then(function(promise){
-        $scope.flightItinerary = promise.data; 
-//         for(var j =0; j < promise.data.length; j++) {
-//         $scope.flights=promise.data[j].savedFlight;
-//           console.dir($scope.flights)
-//           $scope.flightList = [];
-//           for(var i=0; i < promise.data[j].savedFlight.length; i++) {
-//             $scope.mapdata = promise.data[j].savedFlight[i];
-//             $scope.flightList.push($scope.mapdata);
-//
-//           }
-//           console.log($scope.flightList);
-// }
+        $scope.flightItinerary = promise.data;
+
       })
 
-      $scope.pageTimer = $timeout(function() {  //timeout
-      ctrl.findFlight();    //findFlight();  //$state.reload();
-      }, 6000)
+      $scope.pageTimer = $timeout(function() {
+      ctrl.findFlight();
+      }, 60000)
 
         $scope.$on('$destroy', function() {
         $timeout.cancel($scope.pageTimer)
       })
 
-      // $scope.pageTimer = $interval(function() {  //timeout
-      // this.findFlight();    //findFlight();  //$state.reload();
-      // }, 6000)
-      //
-      // this.findFlight();
+
 
 
     }
 
-    // this.intervalPromise = $interval(function() {
-    //   angular.element(document.querySelector('#searchFlightsButton')).triggerHandler('click');
-    // }, 5000)
+
 
     this.saveFlights = function(flightList) {
   console.log("I am falled");
@@ -91,9 +75,7 @@ export default class UserController {
     }
 
 
-    // this.intervalPromise = $interval(function() {
-    //   $state.reload();
-    // }, 6000)
+
 
 
 
@@ -103,12 +85,9 @@ export default class UserController {
     if (this.entity) {
       this.info = {
         User: this.entity.user,
-        // Tweet: this.entity.tweet
+  
       }
-      // this.setInfo = {
-      //   Tweets: this.entity.tweets,
-      //   Tweets: this.entity.tweets
-      // }
+
     }
   }
 

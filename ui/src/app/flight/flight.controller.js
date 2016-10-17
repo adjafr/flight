@@ -10,17 +10,12 @@ export default class FlightController {
     if (this.entity) {
       this.info = {
         Flight: this.entity.flight
-        //User: this.entity.user
       }
-//      this.setInfo = {
-//        Users: this.entity.users,
-//        Flights: this.entity.flights
-//      }
     }
 
       $scope.pageTimer = $timeout(function() {
         $state.reload();
-      }, 6000)
+      }, 60000)
 
       $scope.$on('$destroy', function() {
         $timeout.cancel($scope.pageTimer)
@@ -42,8 +37,5 @@ export default class FlightController {
       return 'home'
     }
   }
-
-
-
 
 }
