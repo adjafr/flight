@@ -65,6 +65,8 @@ public class FlightServiceImpl implements FlightService{
 	    		}
 	    	}
 	    
+	    	// put this in a seperate method for the flights and then each time you search call this method and it will caclulate
+	    	//both for you
 	        Itinerary itinerary = new Itinerary();
 	        itinerary.setLayOver(layOver);
 	        itinerary.setTotalTripTime(layOver + flightDuration); 
@@ -91,10 +93,10 @@ public class FlightServiceImpl implements FlightService{
 	        return itineraryRepository.findByUser(user);
 	    }
 
-	    
+	    // create a function that takes in an itinerary and 
 	    // Search Available Flights by Origin & Destination
 	    @Override
-	    public List<List<Flight>> getAllAvailableFlightsFromOriginToDestination(Flight flight) {
+	    public List<Itinerary> getAllAvailableFlightsFromOriginToDestination(Flight flight) {
 
 	    	List<List<Flight>> flightSet = new ArrayList<>();
 	        List<FlightNode> flights = new ArrayList<>();
@@ -129,7 +131,26 @@ public class FlightServiceImpl implements FlightService{
 	        for(FlightNode node: flights) {
 	        	flightSet.add(getFlightsFromNode(node));
 	        }
-	        return flightSet;
+	        
+	        List<Itinerary> itineraries = new ArrayList<>();
+	        for(List<Flight> flightList: flightSet) {
+	        	int layOver = 0;
+		    	int flightDuration = 0;
+		    	for(int i = flightList.size() - 1; i >=0; i--) {
+		    		if( i > 0) {
+		    			layOver += flightList.get(i).getDepartureTime() - flightList.get(i - 1).getArrivalTime();
+		    			flightDuration += flightList.get(i).getFlightTime();
+		    		} else {
+		    			flightDuration += flightList.get(i).getFlightTime();
+		    		}
+		    	}
+	        	Itinerary itinerary = new Itinerary();
+	        	itinerary.setSavedFlight(flightList);
+	        	itinerary.setTotalTripTime(flightDuration);
+	        	itinerary.setLayOver(layOver);
+	        	itineraries.add(itinerary);
+	        }
+	        return itineraries;
 	    }
 	    
 	    

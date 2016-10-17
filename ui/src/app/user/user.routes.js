@@ -1,4 +1,4 @@
-export default function route ($stateProvider) {
+export default function route ($stateProvider, $urlRouterProvider) {
   $stateProvider
 
 

@@ -11,20 +11,20 @@ export default class UserService {
 
   getAllUsers () {
     return this.$http
-      .get(this.server + 'users')
+      .get(this.server + '/users')
       .then((users) => users.data)
 
   }
 
   getUser (id) {
     return this.$http
-      .get(this.server + 'users/' + id)
+      .get(this.server + '/users/' + id)
       .then((user) => user.data)
   }
 
   editUser (id, user) {
     return () => {
-      this.$http.patch(this.server + 'users/' + id, user)
+      this.$http.patch(this.server + '/users/' + id, user)
     }
   }
 }

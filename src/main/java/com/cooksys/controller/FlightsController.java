@@ -26,7 +26,7 @@ public class FlightsController {
     }
 
     @RequestMapping(value = "/allavailable", method = RequestMethod.POST)
-    public List<List<Flight>> getAllAvailableFlightForOToDNew(@RequestBody Flight flight) {
+    public List<Itinerary> getAllAvailableFlightForOToDNew(@RequestBody Flight flight) {
         return flightService.getAllAvailableFlightsFromOriginToDestination(flight);
     }
 

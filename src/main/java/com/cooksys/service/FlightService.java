@@ -10,7 +10,7 @@ public interface FlightService {
 
     List<Flight> getDailyFlightList();
 
-    public List<List<Flight>> getAllAvailableFlightsFromOriginToDestination(Flight flight);
+    public List<Itinerary> getAllAvailableFlightsFromOriginToDestination(Flight flight);
 
     Itinerary createItinerary(List<Flight> flightSet, Integer userId);
 

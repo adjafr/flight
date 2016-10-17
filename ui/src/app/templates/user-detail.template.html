@@ -15,7 +15,10 @@
 						<input type="text" class="green form-control" id="name" ng-model="ctrl.entity.name">
 						<span class="glyphicon glyphicon-{{ctrl.glyph}}" aria-hidden="true"></span>
 							{{ctrl.entity.name}}
+							{{entity}}
+							{{ctrl.currentUser}}
 							{{ctrl.entity.id}}
+							{{global.service.validUser}}
 
 						</a>
 					</div>
@@ -116,8 +119,36 @@
 
 				 <br><br><a>
 					 <div>List of Available Flights</div>
-					 <md-list-item class="md-3-line" ng-repeat="flightList in flights" ng-click="ctrl.saveFlights(flightList)" ng-if="flights.length > 1">
+					 <md-list-item class="md-3-line" ng-repeat="b in flightItinerary" ng-click="ctrl.saveFlights(b.savedFlight)" ng-if="b.savedFlight.length > 0">
 						 <div class="md-list-item-text" layout="column">
+							 <div class="md-list-item-text" layout="column">
+								 LayOver Time: {{b.layOver}}
+								 Total Trip Time: {{b.totalTripTime}}
+									<div class="table-responsive">
+											<table class="table table-bordered">
+													<thead>
+													<tr class="success">
+															<th>Origin</th>
+															<th>Destination</th>
+															<th>Flight Duration</th>
+															<th>Departure Time</th>
+															<th>Arrival Time</th>
+													</tr>
+													</thead>
+													<tbody>
+										<tr ng-repeat="flight in b.savedFlight" class="info" >
+											<td>{{flight.origin}}</td>
+											<td>{{flight.destination}}</td>
+											<td>{{flight.flightTime}}</td>
+											<td>{{flight.departureTime}}</td>
+											<td>{{flight.arrivalTime}}</td>
+										</tr>
+									</tbody>
+								 </table>
+									 </div>
+															</div>						 </div>
+
+						 <!-- <div class="md-list-item-text" layout="column">
 								 <div class="table-responsive">
 								     <table class="table table-bordered">
 								         <thead>
@@ -140,9 +171,9 @@
 								 </tbody>
 								</table>
 									</div>
-								 						 </div>
+								 						 </div> -->
 						 </md-list-item>
-						 <div ng-if="flights.length == 0">
+						 <div ng-if="b.savedFlight.length == 0">
 							 		No flights available at this time for the origin and destination you selected.
 						  </div>
 				 </a>

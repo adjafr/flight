@@ -15,7 +15,14 @@ export default function route ($stateProvider) {
     })
     .state('loginDetail/:id', {
       url: '/users/:id',
-      component: 'appLoginDetail'
+      component: 'appLoginDetail',
+      resolve:
+        {
+        entity: function (loginService, $stateParams) {
+          console.log($stateParams.id);
+          return loginService.getUser($stateParams.id)
+        }
+      }
       })
       // resolve: {allUsers: function(loginService){
       //   return loginService.AllUsers()

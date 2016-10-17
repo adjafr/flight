@@ -42,6 +42,11 @@ class UserDetailService {
 
 
 }
+getUser (id) {
+  return this.$http
+    .get('http://localhost:8000' + '/users/' + id)
+    .then((user) => user.data)
+}
 
 
 

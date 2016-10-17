@@ -1,9 +1,10 @@
 import templateUrl from './templates/home.template.html'
+import LoginController from './login/login.controller'
 
 export default {
   templateUrl,
-  controllerAs: 'homeController',
-  controller: class HomeController {}
+  controllerAs: 'ctrl',
+  controller: LoginController
 }
 
 

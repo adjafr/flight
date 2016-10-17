@@ -2,11 +2,15 @@ import GlobalService from '../global.service'
 
 export default class UserController {
   /* @ngInject */
-  constructor ($scope, $timeout, GlobalService, UserDetailService, $state, $map, $interval) {
+  constructor ($scope, $timeout, GlobalService, userService, UserDetailService, $state, $map, $interval, $stateParams) {
+    var ctrl = this
+
+
     this.name = 'Users'
     this.link = 'userDetail'
     this.glyph = 'user'
     this.GlobalService = 'GlobalService'
+    this.userService = 'userService'
     this.flight
     this.itinerary
     this.listOfFlights
@@ -15,26 +19,45 @@ export default class UserController {
     this.$state = $state
 
 
+    this.currentUser = function () {
+         UserDetailService.getUser($stateParams.id).then(function (user) {
+           ctrl.user = user.data
+           console.log("I am called");
+         })
+       }
+
+
+
     this.findFlight = function () {
       UserDetailService.searchFlights(this.flight).then(function(promise){
-        $scope.flights=promise.data
-          console.dir($scope.flights)
-          $scope.flightList = [];
-          for(var i=0; i < promise.data.length; i++) {
-            $scope.mapdata = promise.data[i];
-            $scope.flightList.push($scope.mapdata);
-          }
-          console.log($scope.flightList);
-
+        $scope.flightItinerary = promise.data; 
+//         for(var j =0; j < promise.data.length; j++) {
+//         $scope.flights=promise.data[j].savedFlight;
+//           console.dir($scope.flights)
+//           $scope.flightList = [];
+//           for(var i=0; i < promise.data[j].savedFlight.length; i++) {
+//             $scope.mapdata = promise.data[j].savedFlight[i];
+//             $scope.flightList.push($scope.mapdata);
+//
+//           }
+//           console.log($scope.flightList);
+// }
       })
 
-      $scope.timer = $timeout(function() {
-        findFlight();
+      $scope.pageTimer = $timeout(function() {  //timeout
+      ctrl.findFlight();    //findFlight();  //$state.reload();
       }, 6000)
 
-      $scope.$on('$destroy', function() {
-        $timeout.cancel($scope.timer)
+        $scope.$on('$destroy', function() {
+        $timeout.cancel($scope.pageTimer)
       })
+
+      // $scope.pageTimer = $interval(function() {  //timeout
+      // this.findFlight();    //findFlight();  //$state.reload();
+      // }, 6000)
+      //
+      // this.findFlight();
+
 
     }
 

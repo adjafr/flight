@@ -15,26 +15,32 @@ export default class LoginService {
 			.get(this.url)
 			.then((allUsers) => allUsers.data)
 	}
+	getUser (id) {
+	  return this.$http
+	    .get('http://localhost:8000' + '/users/' + id)
+	    .then((user) => user.data)
+	}
+
 
 //	getUserDetails = function(id) { return this.$http.get(url + id) };
-	getUserDetails ( user)
+	getUserDetails (user)
 
 	{
 
 		console.dir('login service happened')
 		let temp = user.password
-		console.log(temp)
+		// csonsole.log(temp)
 		console.log("_____________")
 		this.$http.get(this.url + user.username + '/validate' ).then((user) => {
 		this.thisUser = user.data
 
 			this.AllUsers	= this.$http
-				.get(this.server + 'users')
-				.then((userGet) => users.data)
+				.get('http://localhost:8000' + '/users')
+				.then((userGet) => userGet.data)
 
 
 		// if(temp === this.thisUser.password)
-		if(bcrypt.compareSync(temp,this.thisUser.password))
+		if(bcrypt.compareSync(temp, this.thisUser.password))
 		{
 			console.dir('password is correct')
 

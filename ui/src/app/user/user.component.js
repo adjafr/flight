@@ -6,6 +6,7 @@ export default {
   controllerAs: 'ctrl',
   controller: UserController,
   bindings: {
-    entities: '<'
+    entities: '<',
+    entity:'<'
   }
 }
